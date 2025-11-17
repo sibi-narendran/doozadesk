@@ -48,7 +48,7 @@ COPY Gemfile Gemfile.lock package.json pnpm-lock.yaml ./
 RUN pnpm install
 COPY . .
 RUN mkdir log
-RUN SECRET_KEY_BASE=precompile_placeholder DATABASE_URL="postgresql://dummy:dummy@dummy/dummy" RAILS_LOG_TO_STDOUT=enabled bundle exec rake assets:precompile
+RUN RAILS_ENV=production RACK_ENV=production SECRET_KEY_BASE=precompile_placeholder DATABASE_URL="postgresql://dummy:dummy@dummy/dummy" RAILS_LOG_TO_STDOUT=enabled bundle exec rake assets:precompile
 
 # Final application image
 FROM base AS final
