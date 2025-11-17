@@ -1,3 +1,5 @@
+require 'fileutils'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -95,6 +97,7 @@ Rails.application.configure do
     log_path = Rails.root.join('log', "#{Rails.env}.log")
     # Ensure log directory exists
     FileUtils.mkdir_p(log_path.dirname) unless log_path.dirname.exist?
+    FileUtils.touch(log_path) unless log_path.exist?
     config.logger = ActiveSupport::Logger.new(log_path, 1, ENV.fetch('LOG_SIZE', '1024').to_i.megabytes)
   end
 
@@ -105,3 +108,4 @@ Rails.application.configure do
     Bullet.rails_logger = true
   end
 end
+
