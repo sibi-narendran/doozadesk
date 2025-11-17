@@ -8,6 +8,12 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Skip connecting to DB during asset precompilation
+# https://github.com/rails/rails/issues/45030
+if ENV['RAILS_GROUPS'] == 'assets'
+  ENV['DATABASE_URL'] ||= 'postgres://user:pass@127.0.0.1/fake_db'
+end
+
 ## Load the specific APM agent
 # We rely on DOTENV to load the environment variables
 # We need these environment variables to load the specific APM agent
