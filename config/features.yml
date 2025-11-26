@@ -208,3 +208,9 @@
   enabled: false
   premium: true
   chatwoot_internal: true
+- name: channel_facebook
+  display_name: Facebook Channel
+  enabled: true
+- name: channel_email
+  display_name: Email Channel
+  enabled: true
